@@ -1,0 +1,24 @@
+-link css and html:
+    <link rel = "stylesheet" type = "text/css" href = " ">
+
+-make it fit to mobile device:
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+-what is margin, padding?
+
+-You can add a fallback value for the font-family by adding another font name separated by a comma. Fallbacks are used in instances where the initial is not found/available.
+
+-a:visited{} can set the property of a anchor/link when user clicked
+
+-a:hover{} property for when user put mouse on the link
+
+-a:active{} property for when user actually clickink the link
+
+
+
+
+situation:
+-Styling the p elements as inline-block and placing them on separate lines in the code creates an extra space to the right of the first p element causing the second one to shift to the next line. 
+    make both p1 and p2 inline-block and apply width less than 50% like calc(50% - 2px) may be because of margin and padding in parents
+    or
+    make both p1 and p2 in the same line in html without space, then set inline-block and apply width 50% for each

@@ -1,0 +1,30 @@
+comment in sql file
+    - "--" for single line comment and /* */ for multi lines comment
+
+psql commands: (the <db_name> means the name of the database, and no need to type in the '<' and '>')
+    
+    - ouside psql (in terminal environment):
+        - psql --version
+            give you the version info of psql, if psql is not installed, return error        
+        - psql  
+            get in to the psql environment        
+        - createdb <db_name>
+        - createdb -e <db_name>
+            both create a database, the '-e' option will return a info        
+        - dropdb <db_name>
+        - dropdb <db_name>
+            both delete a database, the '-e' option will return a info        
+        - psql -d <db_name>
+            connect in to a database
+    
+    - in the psql environment:
+        - commands for getting help info"
+            - help  //get help
+            - \?  //get help with psql commands
+            - \h  //get help with SQL commands
+        - 
+
+    
+    
+    
+    - \l 

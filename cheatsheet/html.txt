@@ -1,0 +1,30 @@
+-anchor tag <a></a> use href attribute to link to the URL
+    if add the new attribute target= '_blank'. after click will open a new tab.
+
+-Use a <figure> element to mark up a photo in a document, and a <figcaption> element to define a caption for the photo:
+    <figure>
+        <img src="pic_trulli.jpg" alt="Trulli" style="width:100%">
+        <figcaption>Fig.1 - Trulli, Puglia, Italy.</figcaption>
+    </figure>
+
+-difference between <i> and <em>:
+    they look the same, <em>
+
+-<form></form> action attribute indicate the where the info will be submitted the form 
+
+-input : various type of input, name and value attribute as a pair show in back end. placeholder attibute means default message, required means can    not be empty
+    input with radio attribute, if they have the same name attribute, only one option can be selected.
+
+button
+
+-inline elements, which dont appear in new line.
+
+-<label></label>
+    for attribute will nested with the same id attribute
+
+-The <fieldset> element is used to group related inputs and labels together in a web form.
+
+-<legend> element act as the caption for the content in <fieldset>
+
+-hr element display a divider between sections of different content. hr elements are self closing.
+

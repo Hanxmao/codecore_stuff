@@ -1,0 +1,68 @@
+KnexJS
+- With KnexJS we're able to write SQL code, execute it in a database, and convert the returned records into     workable javascript objects.
+
+- install
+    -locally : npm i pg knex
+    -globally: npm -g pg knex  -->why? cuz we need it available for CLI 
+
+    -pg library: a PostgreSQL client for NodeJS!
+        - what is a client?
+            - A client is basically a program that interacts with a server. We need to communicate to the database server through a client. pg library has a lot custom code we can use.
+
+- to start a project, we need to create and get in a directory, then run npm init in terminal, it will create package.json for us. if we need to create a database, use command createdb name_of_database
+
+- to start using knex, with the command knex init. it will create knexfile.js for us.
+    - inside the knexfile.js, We're not going to use a production or staging database for now so we'll get rid of those.
+    - in the development part, we use pg database, so we change client value to 'pg', and also if you're on Linux/Ubuntu you need to provide the username and password
+        -To reset the postgres password:1) In terminal connect to postgres using psql 2) inside of psql use the command \password 3) enter your new password
+    
+    - here is a example of how it looks like
+      development: {
+        client: 'pg',
+        connection: {
+          database: 'name_of_database',
+          username: your_username,
+          password: your_psql_password,
+        },
+      migrations: {     ---> a migrations object which contains configrations related to migrations.
+        tableName: 'migrations',      --->the table which stores all the data related to running migrations
+        directory: 'db/migrations',    --->the directory that contains our migration files 
+        },
+      }
+
+- What is a migration?
+    a file that contains SQL statements used to change a database's structure. Adding, removing, or renaming, tables, columns, or constraints are all changes to a database's structure.
+    This allows us to keep a history changes to our database over time. Very useful for debugging or rolling back data.
+    A migration just defines a change, it does not apply the changes. We'd need to "run" or "execute" or "migrate" a migration. Migrating is actually running the SQL queries against a database.
+    A migration should only be run once.
+    Once the project is in production you MUST NOT edit a migration file that has manipulated a production database.
+    If you need to change a databases structure you simply write a new migration to make those changes.
+
+- use the command | knex migrate:make NameOfMigration | to generate a migraiton file
+    - The up function contain the SQL query to make a change to the database
+    - The down function contain SQL query to undo the up query
+
+- before makding queries, we need some set up
+    -make a .js file to exports the module we need like this:
+        
+        const knex = require('knex');     --->require kenx
+        const developmentConfig = require('../path_to_knexfile').development;    --->require knexfile.development info
+        const client = knex(developmentConfig);    ---?here client include all the development information
+
+        module.exports = client;
+
+    - insert query
+        knex(targetTable_name).insert({  -->insert the value below to the table targetTable_name
+            title: 'first post',  --->table column name and the value
+            content: 'our first post was made first...'   --->another table column name and the value
+        })
+
+    - we can chain a .then() method to do something to the data, such as console.log the data we just inserted.
+        knex.insert({
+            title: 'first post',
+            content: 'our first post was made first...'
+        }).then(data => {
+            console.log(data);
+        });
+
+    

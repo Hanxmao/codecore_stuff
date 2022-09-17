@@ -1,0 +1,107 @@
+- Node.js is a server-side, javascript runtime environment. Node.js is a C++ application that embeds the V8 js engine.
+
+- process, a global object.
+
+- Asynchronous programming makes it possible to language waiting for long-running actions without freezing the program during these actions. Simply speaking, Asynchronous can run different code lines/blocks at the same time, and  Synchronous will run them one by one.
+
+- Modules
+    - allow us to load and use code from other programmers.
+    
+    - module.exports= function A in module file, then we can use function A by <require>.
+        - e.g : save module.exports = function Target (){} in file A, then use const target = require ('./Target') in file B to run the Target function in file A.
+    
+    - Node contains many integrated modules.
+        
+        - fs --> File system module
+            - Read file: <fs.readdir>
+                e.g.:
+                    const fs = require("fs");   -->//Load the "fs" Node core library
+                    // fs.readdir need two arguments, the target file's path, and the (err, data)
+                    fs.readdir("./my_directory", (err, data) => {  
+	                    console.log(data);  
+                    });
+            
+            - creat file: <fs.writefile>
+                e.g.:
+                    const fs = require("fs");
+                    const text = "This string will be the content of myFile.txt";
+                    // fs.writefile need three arguments, the final file's name, the content data, and (err)
+                    fs.writeFile("myFile.txt", text, err => {
+	                    console.log("File created!");
+                    });
+        
+        - readline -->can be used to create a CLI or just capture input from the user in terminal
+            - createInterface() 
+                e.g:
+                    cosnt readline = require('readline');
+  
+                    const rl = readline.createInterface(
+                        process.stdin, process.stdout);
+            
+            - rl.question() method is used for asking questions from the user and reading their reply (output). The first parameter is used to ask the question and the second parameter is a callback function which will take the output from the user as the parameter and return it on the console. 
+            
+            - rl.close() method will close the interface because the rl.question() will keep asking the inputs.
+            
+            - setPrompt() method is used to set the particular statement to the console. prompt() method for displaying the statement which is set in setPrompt() Method.
+                e.g.:
+                    var readline = require('readline');
+  
+                    var rl = readline.createInterface(
+                        process.stdin, process.stdout);
+  
+                    rl.setPrompt(`What is your age? `);
+                    rl.prompt()
+            
+            - rl.on() -->listener method that reading the input from the user and displaying it to the console.rl.on() will take two parameters. The first parameter will be the event and the second parameter will be a callback function that will return the output to the console. 
+                - events :
+                    - close: This event is invoked when either rl.close() method is called or when the user presses ctrl + c to close the interface.
+                    
+                    - line: This event is invoked whenever the user presses Enter or return keys. This event is called in the listener function.
+                        e.g.:
+                            rl.on('line', (input) => {
+                                console.log(`Input Received: ${input}`);
+                                rl.close();
+                            });
+
+                    - check out the rest events on https://www.geeksforgeeks.org/node-js-readline-module/?ref=gcse
+
+        - path module
+            const path= require('path')
+            cosnt absolute = path.resolve(__dirname, 'you_file_name')
+
+            the __dirname is a globale object in node.js, it points to the path of the directory that contain the file itslef.
+            the path.resolve will return the content inside and sperate them by '/', such as path.resolve('testDirectory','test.js')  it will return testDirectory/test.js
+
+- Projects and package.json
+    - Project: A project is a directory that contains a package.json file
+
+    - why package.json?
+        Use modules from other programmers
+        Create a module for other programmers
+        Organize your program
+        Add project specific scripts   
+
+        - we dont need to upload our node_modules (which include all the package/modules/libraries) to the git
+          once we or others clone our project, they can run the command npm install , and it will auto install all the modules located in the dependencies part in the package.json file.
+
+          - what's the different between dependencies and devdependencies in package.json
+            dependencies are the modules we need to run our project
+            devdependencies are the modules we need only when we build our project. Once the project done we dont need them any more, which means if somebody else want to run the project, they dont need these modules.
+          - scripts : some custom command, can use <npm run command_name> to run it
+
+    
+    - package.json is a configuration file holding a project's details
+
+- Packages: Packages are pre-packaged libraries usually available from a service like npm or rubygems
+    NPM commands:
+        - npm init -->To start an NPM project
+        
+        - npm install <package-name> or npm i <package-name>  -->>installing a package
+
+        - npm remove <package-name> -->> remove a package
+
+
+
+
+            
+
